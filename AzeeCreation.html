@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AzeeCreation - Mobile Responsive Resin Art</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Base reset and styles */
+    * {
+      box-sizing: border-box;
+    }
+
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #fff9f0;
+      scroll-behavior: smooth;
+    }
+
+    a {
+      color: #f39c12;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    a:hover {
+      color: #d35400;
+    }
+
+    /* Header and Navigation */
+    header {
+      background: linear-gradient(90deg, #f0c27b, #4b1248);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 7px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1.5rem;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    nav .logo {
+      font-weight: 600;
+      font-size: 1.8rem;
+      color: white;
+      letter-spacing: 2px;
+      font-style: italic;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+
+    nav ul li a {
+      font-weight: 600;
+      font-size: 1rem;
+      color: white;
+      padding: 0.35rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    nav ul li a:hover {
+      background: white;
+      color: #4b1248;
+    }
+
+    /* Banner Section */
+    .banner {
+      text-align: center;
+      padding: 4rem 2rem 3rem;
+      color: white;
+      background: url('https://i.imgur.com/Raj9jeE.jpg') center/cover no-repeat;
+      position: relative;
+    }
+
+    .banner::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(75, 18, 72, 0.56);
+      z-index: 0;
+    }
+
+    .banner-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .banner-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-shadow: 2px 2px 12px rgba(0, 0, 0, 0.7);
+    }
+
+    .banner-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.7);
+    }
+
+    .btn-primary {
+      background: #f39c12;
+      border: none;
+      color: white;
+      padding: 1rem 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s;
+      box-shadow: 0 6px 18px rgba(243, 156, 18, 0.5);
+    }
+
+    .btn-primary:hover {
+      background: #d35400;
+    }
+
+    /* Social Icons */
+    .social-icons {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+    }
+
+    .social-icons a {
+      color: white;
+      font-size: 1.8rem;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #d35400;
+    }
+
+    /* Sections General */
+    section {
+      max-width: 1100px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+
+    h2.section-title {
+      font-size: 2rem;
+      color: #4b1248;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      border-bottom: 3px solid #f39c12;
+      padding-bottom: 0.3rem;
+      width: fit-content;
+    }
+
+    /* Gallery Carousel */
+    .carousel {
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 1rem;
+    }
+
+    .carousel img {
+      flex: 0 0 auto;
+      width: 90vw;
+      max-width: 300px;
+      height: auto;
+      border-radius: 15px;
+      object-fit: cover;
+      box-shadow: 0 8px 25px rgba(243, 156, 18, 0.6);
+      scroll-snap-align: center;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .carousel img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 12px 30px rgba(243, 156, 18, 0.9);
+    }
+
+    /* What I Do */
+    .whatido p {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      font-weight: 400;
+      max-width: 900px;
+      color: #6e2353;
+    }
+
+    /* Works Grid */
+    .works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .work-card {
+      background: white;
+      border-radius: 14px;
+      box-shadow: 0 10px 20px rgba(183, 67, 0, 0.15);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .work-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 16px 30px rgba(183, 67, 0, 0.3);
+    }
+
+    .work-card img {
+      width: 100%;
+      height: 210px;
+      object-fit: cover;
+      border-bottom: 4px solid #f39c12;
+    }
+
+    .work-card h3 {
+      font-size: 1.3rem;
+      color: #b34400;
+      margin: 0.8rem 1rem 0.3rem 1rem;
+    }
+
+    .work-card p {
+      font-size: 1rem;
+      color: #825554;
+      margin: 0 1rem 1rem 1rem;
+    }
+
+    /* Testimonials */
+    .testimonial-container {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .testimonial {
+      border-radius: 15px;
+      padding: 1.5rem;
+      background: #fff0e1;
+      box-shadow: 0 8px 12px rgba(243, 156, 18, 0.2);
+      border-left: 5px solid #f39c12;
+      font-style: italic;
+      color: #552635;
+    }
+
+    .testimonial strong {
+      color: #b34400;
+      display: block;
+      margin-bottom: 0.6rem;
+      font-weight: 600;
+    }
+
+    /* Form */
+    form {
+      max-width: 550px;
+      margin: 2rem auto 0;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      color: #4b1248;
+    }
+
+    form input,
+    form textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: 2px solid #f39c12;
+      font-size: 1rem;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1.2rem;
+      box-sizing: border-box;
+      resize: vertical;
+      transition: border-color 0.3s;
+    }
+
+    form input:focus,
+    form textarea:focus {
+      border-color: #b34400;
+      outline: none;
+    }
+
+    form button {
+      background: #f39c12;
+      color: white;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(243, 156, 18, 0.5);
+      transition: background 0.3s ease;
+    }
+
+    form button:hover {
+      background: #b34400;
+    }
+
+    #formMsg {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: #4cb050;
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 700px;
+      margin: 2rem auto;
+    }
+
+    details {
+      background: #fff2d8;
+      padding: 1rem 1.2rem;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      border-left: 5px solid #f39c12;
+      cursor: pointer;
+      font-weight: 600;
+      color: #743e26;
+      user-select: none;
+      transition: background 0.3s;
+    }
+
+    details[open] {
+      background: #ffe2a7;
+    }
+
+    details summary {
+      outline: none;
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .carousel img {
+        width: 80vw;
+        max-width: none;
+      }
+
+      .work-card img {
+        height: 160px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header .logo {
+        font-size: 1.5rem;
+      }
+
+      .banner-content h1 {
+        font-size: 2rem;
+      }
+
+      .banner-content p {
+        font-size: 1rem;
+      }
+
+      form {
+        margin: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header and Navigation -->
+  <header>
+    <nav>
+      <div class="logo">AzeeCreation</div>
+      <ul>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#whatido">What I Do</a></li>
+        <li><a href="#works">My Works</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Banner Section -->
+  <section class="banner" id="home">
+    <div class="banner-content">
+      <h1>Handcrafted Resin Art & Customized Gifts</h1>
+      <p>Creative, unique keepsakes made with passion for your special moments</p>
+      <a href="#contact" class="btn-primary">Order Now</a>
+      <div class="social-icons">
+        <a href="https://www.youtube.com/@azee_resin_artist" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="https://instagram.com/resin_artist_azee" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/8940722684" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section id="gallery">
+    <h2 class="section-title">Gallery</h2>
+    <div class="carousel">
+      <img src="IMG-20250913-WA0008.jpg" alt="Resin tray with blue and gold design" />
+      <img src="IMG-20250913-WA0004.jpg" alt="Custom resin pendant with floral elements" />
+      <img src="IMG-20250913-WA0010.jpg" alt="Handmade resin keychain with embedded flower" />
+      <img src="IMG-20250913-WA0011.jpg" alt="Preserved flower block in clear resin" />
+      <img src="IMG-20250913-WA0012.jpg" alt="Set of resin coasters with different colors" />
+      <img src="IMG-20250913-WA0013.jpg" alt="Glittery resin bracelet" />
+    </div>
+  </section>
+
+  <!-- What I Do Section -->
+  <section id="whatido">
+    <h2 class="section-title">What I Do</h2>
+    <div class="whatido">
+      <p>At AzeeCreation, I create fully customizable resin art including jewelry, trays, wall decor, preserved flower gifts, and unique keepsakes. I work with embedded photos, flowers, glitters, and vibrant colors to make your memories last forever.</p>
+    </div>
+  </section>
+
+  <!-- Featured Works Section -->
+  <section id="works">
+    <h2 class="section-title">Featured Works</h2>
+    <div class="works-grid">
+      <div class="work-card">
+        <img src="IMG-20250913-WA0027.jpg" alt="Beach Theme Resin Frame" />
+        <h3>Beach Theme Resin Frame</h3>
+        <p>A beautiful frame capturing Beach effects and memories sealed in clear resin.</p>
+      </div>
+      <div class="work-card">
+        <img src="IMG-20250905-WA0022.jpg" alt="Custom Resin Bracelet" />
+        <h3>Nikkah Certificate</h3>
+        <p>personalized Nikkah initials and colorful designs.</p>
+      </div>
+      <div class="work-card">
+        <img src="IMG-20250913-WA0020.jpg" alt="Resin Art Pendant" />
+        <h3>Photo Keychain</h3>
+        <p>Elegant Photo Keychain With Customization.</p>
+      </div>
+      <div class="work-card">
+        <img src="IMG-20250905-WA0011.jpg" alt="Mini Resin Keychain" />
+        <h3>Mini Resin Keychain</h3>
+        <p>Fun and personalized keychains with letters, photos, and flowers.</p>
+      </div>
+      <div class="work-card">
+        <img src="IMG-20250905-WA0022.jpg" alt="Custom Resin Bracelet" />
+        <h3>Custom Resin Bracelet</h3>
+        <p>Glitter-infused personalized bracelets with initials and colorful designs.</p>
+      </div>
+      <div class="work-card">
+        <img src="IMG-20250913-WA0020.jpg" alt="Resin Art Pendant" />
+        <h3>Resin Art Pendant</h3>
+        <p>Elegant pendants with preserved keepsakes and custom colors.</p>
+      </div>
+      <div class="work-card">
+        <img src="IMG-20250905-WA0011.jpg" alt="Mini Resin Keychain" />
+        <h3>Mini Resin Keychain</h3>
+        <p>Fun and personalized keychains with letters, photos, and flowers.</p>
+      </div>
+      <div class="work-card">
+        <img src="IMG-20250913-WA0020.jpg" alt="Resin Art Pendant" />
+        <h3>Resin Art Pendant</h3>
+        <p>Elegant pendants with preserved keepsakes and custom colors.</p>
+      </div>
+      <div class="work-card">
+        <img src="IMG-20250905-WA0011.jpg" alt="Mini Resin Keychain" />
+        <h3>Mini Resin Keychain</h3>
+        <p>Fun and personalized keychains with letters, photos, and flowers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials">
+    <h2 class="section-title">Testimonials</h2>
+    <div class="testimonial-container">
+      <div class="testimonial">
+        <strong>Priya S.</strong>
+        The custom pendant exceeded my expectations! Fast delivery and excellent craftsmanship.
+      </div>
+      <div class="testimonial">
+        <strong>Arun M.</strong>
+        Beautiful bracelet with personalized glitter details. Highly recommend AzeeCreation!
+      </div>
+      <div class="testimonial">
+        <strong>Gayatri R.</strong>
+        Lovely resin gifts for birthdays. The preserved flowers are stunning and delightful.
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="faq">
+    <h2 class="section-title">FAQ</h2>
+    <details>
+      <summary>How do I place a custom order?</summary>
+      <p>Fill the contact form below with your requirements, and we will get back to you with a quote and timeline.</p>
+    </details>
+    <details>
+      <summary>What is the typical delivery time?</summary>
+      <p>Custom orders usually take 7-10 business days, depending on complexity and volume.</p>
+    </details>
+    <details>
+      <summary>Do you ship internationally?</summary>
+      <p>Currently, we only ship within India but plan to expand delivery options soon.</p>
+    </details>
+  </section>
+
+  <!-- Contact / Order Form Section -->
+  <section id="contact">
+    <h2 class="section-title">Contact / Order Inquiry</h2>
+    <form id="contactForm" action="https://formspree.io/f/xdkwgbdk" method="POST">
+      <label for="name">Name</label>
+      <input id="name" name="name" type="text" placeholder="Your full name" required />
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="you@example.com" required />
+      <label for="message">Order Details / Query</label>
+      <textarea id="message" name="message" rows="5" placeholder="Describe your order or ask a question" required></textarea>
+      <button type="submit">Send</button>
+      <div id="formMsg" role="alert" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <section style="padding: 1rem 1rem; text-align: center; background:#f7f0e7; color:#784212;">
+      &copy; 2025 AzeeCreation - Resin Art & Gifts |
+      <a href="https://wa.me/8940722684" target="_blank" rel="noopener">WhatsApp</a> |
+      <a href="https://instagram.com/resin_artist_azee" target="_blank" rel="noopener">Instagram</a> |
+      <a href="https://www.youtube.com/@azee_resin_artist" target="_blank" rel="noopener">YouTube</a>
+    </section>
+  </footer>
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <script>
+    // Smooth scrolling for navigation and button
+    document.querySelectorAll('nav ul li a, .btn-primary').forEach(anchor => {
+      anchor.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) target.scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+
+    // Form submission feedback for Formspree
+    const form = document.getElementById('contactForm');
+    const formMsg = document.getElementById('formMsg');
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      formMsg.textContent = '';
+      const data = new FormData(form);
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        if (response.ok) {
+          formMsg.style.color = '#4caf50';
+          formMsg.textContent = 'Thank you for your inquiry! We will get back to you soon.';
+          form.reset();
+        } else {
+          const result = await response.json();
+          throw new Error(result.error || 'Failed to send message');
+        }
+      } catch (error) {
+        formMsg.style.color = '#d32f2f';
+        formMsg.textContent = `Error: ${error.message}`;
+      }
+    });
+  </script>
+</body>
+
+</html>
